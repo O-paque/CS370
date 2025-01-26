@@ -3,7 +3,5 @@ FILES=main.c
 OUT_EXE=main
 build: $(FILES)
 	$(CC) -o $(OUT_EXE) $(FILES)
-run: build
-	./main
 clean:
 	rm -f *.o $(OUT_EXE)
