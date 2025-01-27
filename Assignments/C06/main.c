@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv) {
     int i;
-    long int a;
+    unsigned long long a;
 
     scanf("%lld", &a);
 
