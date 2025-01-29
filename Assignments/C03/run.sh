@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$#" -eq 0 ]; then
-    echo "Usage requires an numerical argument"
+if [ "$#" -ne 1 ]; then
+    echo "Usage requires one numerical argument"
     exit 1
 fi
 
