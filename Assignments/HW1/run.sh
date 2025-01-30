@@ -6,5 +6,5 @@ if [ "$#" -ne 1 ]; then
 fi
 
 make all
-./main $@
+./Driver $@
 make clean

@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wextra
 OBJFILES=Driver.o MemoryManager.o
-OUT_EXE=main
+OUT_EXE=Driver
 all: $(OUT_EXE)
 
 $(OUT_EXE): $(OBJFILES)
