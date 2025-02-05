@@ -12,4 +12,7 @@ int main(int argc, char **argv) {
     swap(f1, f2);
 
     printf("%f %f\n",*f1, *f2);
+
+    free(f1);
+    free(f2);
 }
