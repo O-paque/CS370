@@ -1,5 +1,5 @@
 CC=gcc
-FILES=main.c sort.c
+FILES=main.c
 OUT_EXE=main
 ARGS=
 build: $(FILES)
