@@ -49,9 +49,7 @@ int main(int argc, char **argv) {
                 fprintf(out, " ");
             }   
         }
-        if (i < cols){
-            fprintf(out, "\n");
-        }
+        fprintf(out, "\n");
     }
 
     fclose(in);
