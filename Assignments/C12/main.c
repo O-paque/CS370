@@ -7,7 +7,6 @@ int main(int argc, char **argv) {
     }
 
     FILE *in, *out;
-    char line[10];
 
     in = fopen(argv[1], "r");
     out = fopen(argv[2], "w");
@@ -22,7 +21,10 @@ int main(int argc, char **argv) {
     fscanf(in, "%d %d", &rows, &cols);
 
     int matrix[rows][cols];
-    int t_matrix[cols][rows];
+    int t_matrix[cols+1][rows];
+
+    t_matrix[0][0] = cols;
+    t_matrix[0][1] = rows;
 
     // Get values from infile
     for (int i = 0; i < rows; i++){
@@ -34,12 +36,12 @@ int main(int argc, char **argv) {
     // Transpose values into new matrix
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
-             t_matrix[j][i] = matrix[i][j];
+             t_matrix[j+1][i] = matrix[i][j];
         }
     }
 
     // Write transposed matrix to outfile
-    for (int i = 0; i < cols; i++){
+    for (int i = 0; i < cols+1; i++){
         for (int j = 0; j < rows; j++) {
             fprintf(out, "%d", t_matrix[i][j]);
 
@@ -47,7 +49,7 @@ int main(int argc, char **argv) {
                 fprintf(out, " ");
             }   
         }
-        if (i < cols - 1){
+        if (i < cols){
             fprintf(out, "\n");
         }
     }
