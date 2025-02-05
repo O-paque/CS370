@@ -21,22 +21,37 @@ int main(int argc, char **argv) {
 
     fscanf(in, "%d %d", &rows, &cols);
 
-    printf("Rows: %d, Cols: %d\n", rows, cols);
-
+    int matrix[rows][cols];
     int t_matrix[cols][rows];
 
+    // Get values from infile
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
-             fscanf(in, "%d", &t_matrix[j][i]);
+             fscanf(in, "%d", &matrix[i][j]);
         }
     }
 
-        for (int i = 0; i < rows; i++){
-            for (int j = 0; j < cols; j++){
-             printf("%d",t_matrix[j][i]);
+    // Transpose values into new matrix
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < cols; j++){
+             t_matrix[j][i] = matrix[i][j];
         }
-        printf("\n");
     }
+
+    // Write transposed matrix to outfile
+    for (int i = 0; i < cols; i++){
+        for (int j = 0; j < rows; j++) {
+            fprintf(out, "%d", t_matrix[i][j]);
+
+            if (j < rows - 1) { 
+                fprintf(out, " ");
+            }   
+        }
+        if (i < cols - 1){
+            fprintf(out, "\n");
+        }
+    }
+
     fclose(in);
     fclose(out);
     return 0;
