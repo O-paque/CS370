@@ -40,8 +40,10 @@ int main(int argc, char **argv) {
         }
     }
 
+    fprintf(out, "%d %d\n", t_matrix[0][0], t_matrix[0][1]);
+
     // Write transposed matrix to outfile
-    for (int i = 0; i < cols+1; i++){
+    for (int i = 1; i < cols+1; i++){
         for (int j = 0; j < rows; j++) {
             fprintf(out, "%d", t_matrix[i][j]);
 
@@ -49,7 +51,9 @@ int main(int argc, char **argv) {
                 fprintf(out, " ");
             }   
         }
-        fprintf(out, "\n");
+        if (i < cols){
+            fprintf(out, "\n");
+        }
     }
 
     fclose(in);
