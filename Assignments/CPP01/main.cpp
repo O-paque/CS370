@@ -27,8 +27,8 @@ int main(int argc, char *argv[]) {
 
 double calculate (string &s) {
     int space = s.find(' ');
-    double left = stoi(s.substr(0,space));
-    double right = stoi(s.substr(space+2));
+    double left = stod(s.substr(0,space));
+    double right = stod(s.substr(space+2));
     string oper = s.substr(space + 1, 1);
 
     calc_oper operation = parseOperator(oper);
