@@ -5,13 +5,10 @@
 #include <sys/resource.h>
 #include <sys/wait.h>
 
-// ./run.sh 2 2 3 4 5
-
 int main(int argc, char **argv) {
     // Loop to fork(), exec(), and wait() one at a time
-    for (int i = 2; i < argc; i++){
+    for (int i = 2; i < 6; i++){
         pid_t pid = fork();
-        
 
         switch (pid) {
             case -1:
@@ -33,7 +30,6 @@ int main(int argc, char **argv) {
 
                 break;
         }
-
     }
     return 0;
 }
