@@ -22,5 +22,5 @@ int main(int argc, char **argv) {
     int result = dividend / divisor;
 
     printf("Checker process [%d]: Returning %d.\n", getpid(), result);
-    return result;
+    return 1;
 }

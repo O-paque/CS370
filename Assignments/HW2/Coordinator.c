@@ -35,5 +35,6 @@ int main(int argc, char **argv) {
                 break;
         }
     }
+    printf("Coordinator: exiting.\n");
     return 0;
 }
