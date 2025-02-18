@@ -6,6 +6,7 @@ int main(int argc, char **argv) {
     printf("Checker process [%d]: Starting.\n", getpid());
     int divisor = atoi(argv[0]);
     int dividend = atoi(argv[1]);
+    sleep(1);
 
     if (dividend % divisor != 0){
         printf("Checker process [%d]: %d *IS NOT* divisible by %d.\n", 

@@ -5,6 +5,8 @@
 #include <sys/resource.h>
 #include <sys/wait.h>
 
+// ./run.sh 2 4 5 6 7
+
 int main(int argc, char **argv) {
     // Loop to fork(), exec(), and wait() one at a time
     for (int i = 2; i < 6; i++){
@@ -12,11 +14,13 @@ int main(int argc, char **argv) {
 
         switch (pid) {
             case -1:
-                printf("Coordinator: Fork failed.\n");
+                perror("Coordinator: Fork failed.\n");
                 break;
             case 0:
                 //String passed to execlp needs to match object file in Makefile
                 execlp("checker", argv[1], argv[i], NULL);
+                perror("Coordinator: execlp faled.");
+                break;
             default:
                 printf("Coordinator: forked process with ID %d.\n", pid);
 
