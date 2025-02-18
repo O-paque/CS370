@@ -18,8 +18,8 @@ int main(int argc, char **argv) {
                 break;
             case 0:
                 //String passed to execlp needs to match object file in Makefile
-                execlp("checker", argv[1], argv[i], NULL);
-                perror("Coordinator: execlp faled.");
+                execlp("./checker", argv[1], argv[i], NULL);
+                perror("Coordinator: execlp failed.");
                 break;
             default:
                 printf("Coordinator: forked process with ID %d.\n", pid);
