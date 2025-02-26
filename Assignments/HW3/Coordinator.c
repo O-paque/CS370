@@ -40,11 +40,12 @@ int main(int argc, char **argv) {
             close(fd[1]);
         }
         else {
-            //sleep(1);
+            sleep(1);
             char buffer[8];
             sprintf(buffer, "%d", fd[0]);
             // argv[i+2] to index into argv where the dividends start
             execlp("./checker", buffer, argv[1], argv[i+2], NULL);
+            perror("execlp failed");
         }
     }
     sleep(1);
