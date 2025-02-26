@@ -14,23 +14,28 @@ int main(int argc, char **argv) {
     }
     int ARGS = argc - 2;
     int shm[ARGS];
+    int pipes[ARGS * 2];
     pid_t pids[ARGS];
+
+    int fd[2];
+    
 
     for (int i = 0; i < ARGS; i++) {
         int sharedMemoryId = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0666);
-        int fd[2];
         pipe(fd);
 
-        write(fd[1], &sharedMemoryId, sizeof(sharedMemoryId));
-        close(fd[1]);
+        pipes[i*2] = fd[0];
+        pipes[i*2 + 1] = fd[1];
 
+        write(pipes[i*2 + 1], &sharedMemoryId, sizeof(sharedMemoryId));
+        
         pid_t pid = fork();
         
         if (pid < 0){
             perror("Fork failed");
         }
         else if (pid > 0){
-            close(fd[0]);
+            
             pids[i] = pid;
             shm[i] = sharedMemoryId;
 
@@ -40,12 +45,12 @@ int main(int argc, char **argv) {
             
         }
         else {
-            sleep(5);
+            //sleep(5);
             char buffer[8];
             
             int memId;
-            read(fd[0], &memId, sizeof(memId));
-            close(fd[0]);
+            read(pipes[i*2], &memId, sizeof(memId));
+            close(pipes[i*2]);
             sprintf(buffer, "%d", memId);
             // argv[i+2] to index into argv where the dividends start
             execlp("./checker", buffer, argv[1], argv[i+2], NULL);
@@ -55,6 +60,7 @@ int main(int argc, char **argv) {
 
     int status;
     for (int i = 0; i < ARGS; i++) {
+        close(pipes[i*2 + 1]);
         printf("Coordinator: waiting on chlid process ID %d...\n", pids[i]);
         waitpid(pids[i], &status, 0);
 
