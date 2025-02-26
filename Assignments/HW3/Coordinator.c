@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
             
         }
         else {
+            sleep(5);
             char buffer[8];
             
             int memId;
