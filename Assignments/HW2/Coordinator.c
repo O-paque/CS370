@@ -8,7 +8,8 @@
 // ./run.sh 2 4 5 6 7
 
 int main(int argc, char **argv) {
-    // Loop to fork(), exec(), and wait() one at a time
+    
+    //Loop to fork(), exec(), and wait() one at a time
     for (int i = 2; i < 6; i++){
         pid_t pid = fork();
 

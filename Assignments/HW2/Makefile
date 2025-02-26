@@ -7,7 +7,7 @@ EXE1 = coordinator
 EXE2 = checker 
 
 GCC = gcc
-FLAGS = -Wextra
+FLAGS =
 
 all: coordinator checker
 
