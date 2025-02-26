@@ -43,8 +43,11 @@ int main(int argc, char **argv) {
         else {
             close(fd[1]);
             char buffer[8];
-            sprintf(buffer, "%d", fd[0]);
+            
+            int memId;
+            read(fd[0], &memId, sizeof(memId));
             close(fd[0]);
+            sprintf(buffer, "%d", memId);
             // argv[i+2] to index into argv where the dividends start
             execlp("./checker", buffer, argv[1], argv[i+2], NULL);
             perror("execlp failed");
@@ -54,7 +57,7 @@ int main(int argc, char **argv) {
     int status;
     for (int i = 0; i < ARGS; i++) {
         printf("Coordinator: waiting on chlid process ID %d...\n", pids[i]);
-        wait(&status);
+        waitpid(pids[i], &status, 0);
 
         int *sharedMemPointer = (int*)shmat(shm[i], NULL, 0);
         int result = *sharedMemPointer;
@@ -69,5 +72,6 @@ int main(int argc, char **argv) {
         }
        shmctl(*sharedMemPointer, IPC_RMID, NULL);
     }
+    printf("Coordinator: exiting.\n");
     return 0;
 }
