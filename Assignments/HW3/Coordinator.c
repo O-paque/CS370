@@ -14,14 +14,16 @@ int main(int argc, char **argv) {
     }
     int ARGS = argc - 2;
     int shm[ARGS];
-    int pipes[ARGS * 2];
     pid_t pids[ARGS];
-    int sharedMemoryId;
 
     for (int i = 0; i < ARGS; i++) {
-        sharedMemoryId = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0666);
+        int sharedMemoryId = shmget(IPC_PRIVATE, sizeof(int), IPC_CREAT | 0666);
         int fd[2];
         pipe(fd);
+
+        write(fd[1], &sharedMemoryId, sizeof(sharedMemoryId));
+        close(fd[1]);
+
         pid_t pid = fork();
         
         if (pid < 0){
@@ -29,9 +31,6 @@ int main(int argc, char **argv) {
         }
         else if (pid > 0){
             close(fd[0]);
-            write(fd[1], &sharedMemoryId, sizeof(sharedMemoryId));
-            close(fd[1]);
-
             pids[i] = pid;
             shm[i] = sharedMemoryId;
 
@@ -41,7 +40,6 @@ int main(int argc, char **argv) {
             
         }
         else {
-            close(fd[1]);
             char buffer[8];
             
             int memId;
