@@ -26,9 +26,10 @@ public class Producer implements Runnable {
      * Prints output to the terminal that matches the assignment example output
      */
     public void total(){
-        System.out.println("Producer: Generated " + elementsAdded + " items, Cumulative value of " +
-                            "generated items=" + bufferValueCounter);
+        System.out.printf("Producer: Generated %d items, Cumulative value of " +
+                "generated items=%.2f%n", elementsAdded, bufferValueCounter);
     }
+    
     /**
      * Allows the Producer to be ran on a separate Thread.
      */

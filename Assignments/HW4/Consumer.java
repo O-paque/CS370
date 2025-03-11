@@ -21,9 +21,10 @@ public class Consumer implements Runnable {
      * Prints output to the terminal that matches the assignment example output
      */
     public void total(){
-        System.out.println("Consumer: Consumed " + elementsReceived + " items, Cumulative value " +
-                            "of consumed items=" + bufferValueCounter);
+        System.out.printf("Consumer: Consumed %d items, Cumulative value of " +
+        "consumed items=%.2f%n", elementsReceived, bufferValueCounter);
     }
+    
     /**
      * Allows the Consumer to be ran on a separate Thread.
      */
