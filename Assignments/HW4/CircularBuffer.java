@@ -15,11 +15,9 @@ public class CircularBuffer {
     /**
      * Adds a number to the buffer while implementing the circular property.
      * @param d The number to be added to the buffer.
-     * @throws Exception If the buffer is full, an exception is thrown.
      */
     public synchronized void add(double d) {
-        while (isFull()) {
-            notify();
+        while (entries == buffer.length) {
             try{
                 wait();
             }
@@ -32,11 +30,15 @@ public class CircularBuffer {
         buffer[index] = d;
         tail++;
         entries++;
-    }
 
+        notify();
+    }
+    /**
+     * Gets the oldest entry in the buffer using the current head index to keep the buffer FIFO. 
+     * @return 
+     */
     public synchronized double get() {
-        while(isEmpty()){
-            notify();
+        while(entries == 0){
             try{
                 wait();
             }
@@ -48,24 +50,8 @@ public class CircularBuffer {
 
         head++;
         entries--;
+
+        notify();
         return buffer[index];
     }
-
-    public int getSize(){
-        return entries;
-    }
-
-    public boolean isFull(){
-        return entries >= buffer.length;
-    }
-
-    public boolean isEmpty(){
-        return entries == 0;
-    }
-
-    @Override
-    public String toString(){
-        return "Total entries in buffer: " + entries;
-    }
-
 }

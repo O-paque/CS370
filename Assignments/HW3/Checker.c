@@ -6,17 +6,14 @@
 
 int main(int argc, char **argv) {
     printf("Checker process [%d]: starting.\n", getpid());
-    //sleep(1);
     int fd = atoi(argv[0]);
-    int pipe = atoi(argv[0]);
+    int shm = atoi(argv[0]);
     int divisor = atoi(argv[1]);
     int dividend = atoi(argv[2]);
-    read(fd, &pipe, sizeof(pipe));
+    read(fd, &shm, sizeof(shm));
+    printf("Checker process [%d]: read 4 bytes containing shm ID %d\n", getpid(), shm);
 
-    printf("Checker process [%d]: read 4 bytes containing shm ID %d\n", getpid(), pipe);
-
-    int *sharedMemPointer = (int*)shmat(pipe, NULL, 0);
-    //*sharedMemPointer = 42;
+    int *sharedMemPointer = (int*)shmat(shm, NULL, 0);
 
     if (dividend % divisor != 0){
         printf("Checker process [%d]: %d *IS NOT* divisible by %d.\n", 
@@ -36,10 +33,7 @@ int main(int argc, char **argv) {
         printf("Checker process [%d]: wrote result (1) to shared memory.\n", getpid());
     }
 
-
-
     shmdt(sharedMemPointer);
-
     
     return 0;
 }
