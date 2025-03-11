@@ -3,7 +3,7 @@ package HW4;
 import java.util.Random;
 
 public class Producer implements Runnable {
-    private final int TOTAL_EXECUTIONS = 10000;
+    private final int TOTAL_EXECUTIONS = 1000000;
     private CircularBuffer buffer;
     private Random random;
     private int elementsAdded;
@@ -38,7 +38,7 @@ public class Producer implements Runnable {
         for (int i = 0; i < TOTAL_EXECUTIONS; i++){
             produce();
 
-            if(elementsAdded % 100 == 0){
+            if(elementsAdded % 100000 == 0){
                 total();
             }
         }

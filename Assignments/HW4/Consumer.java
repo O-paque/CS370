@@ -1,7 +1,7 @@
 package HW4;
 
 public class Consumer implements Runnable {
-    private final int TOTAL_EXECUTIONS = 10000;
+    private final int TOTAL_EXECUTIONS = 1000000;
     private CircularBuffer buffer;
     private int elementsReceived;
     private double totalValue;
@@ -33,7 +33,7 @@ public class Consumer implements Runnable {
         for (int i = 0; i < TOTAL_EXECUTIONS; i++){
             consume();
 
-            if(elementsReceived % 100 == 0){
+            if(elementsReceived % 100000 == 0){
                 total();
             }
         }
