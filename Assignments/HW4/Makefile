@@ -6,4 +6,4 @@ run:
 clean:
 	rm ./HW4/*.class
 package:
-	zip -r Seefeldt-Tyler-HW4.zip $(Files) Makefile README.txt
+	zip -r Seefeldt-Tyler-HW4.zip ProducerConsumer.java Producer.java Consumer.java CircularBuffer.java Makefile README.txt
