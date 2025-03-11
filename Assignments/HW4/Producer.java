@@ -7,13 +7,13 @@ public class Producer implements Runnable {
     private CircularBuffer buffer;
     private Random random;
     private int elementsAdded;
-    private double totalValue;
+    private double bufferValueCounter;
 
     Producer(CircularBuffer b){
         random = new Random();
         buffer = b;
         elementsAdded = 0;
-        totalValue = 0;
+        bufferValueCounter = 0;
     }
     /**
      * Adds an element to the FIFO circular buffer that is shared with the Consumer
@@ -21,7 +21,7 @@ public class Producer implements Runnable {
     public void produce() {
         double element =random.nextDouble() * 100;
         buffer.add(element);
-        totalValue += element;
+        bufferValueCounter += element;
         elementsAdded++;
     }
     /**
@@ -29,11 +29,12 @@ public class Producer implements Runnable {
      */
     public void total(){
         System.out.println("Producer: Generated " + elementsAdded + " items, Cumulative value of " +
-                            "generated items=" + totalValue);
+                            "generated items=" + bufferValueCounter);
     }
     /**
      * Allows the Producer to be ran on a separate Thread.
      */
+    @Override
     public void run(){
         for (int i = 0; i < TOTAL_EXECUTIONS; i++){
             produce();
