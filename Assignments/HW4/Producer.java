@@ -43,5 +43,6 @@ public class Producer implements Runnable {
                 total();
             }
         }
+        System.out.println("Producer: Finished generating 1,000,000 items");
     }
 }

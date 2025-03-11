@@ -38,5 +38,6 @@ public class Consumer implements Runnable {
                 total();
             }
         }
+        System.out.println("Consumer: Finished consuming 1,000,000 items");
     }
 }

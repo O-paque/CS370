@@ -9,5 +9,15 @@ public class ProducerConsumer {
         
         producer.start();
         consumer.start();
+
+        try {
+            producer.join();
+            consumer.join();
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        System.out.println("Exiting!");
     }
 }
