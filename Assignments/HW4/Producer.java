@@ -1,5 +1,3 @@
-package HW4;
-
 import java.util.Random;
 
 public class Producer implements Runnable {
@@ -19,7 +17,7 @@ public class Producer implements Runnable {
      * Adds an element to the FIFO circular buffer that is shared with the Consumer
      */
     public void produce() {
-        double element =random.nextDouble() * 100;
+        double element = random.nextDouble() * 100.0;
         buffer.add(element);
         bufferValueCounter += element;
         elementsAdded++;

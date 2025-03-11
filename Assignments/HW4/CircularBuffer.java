@@ -1,5 +1,3 @@
-package HW4;
-
 public class CircularBuffer {
     private double[] buffer;
     private int head;

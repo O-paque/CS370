@@ -7,4 +7,8 @@
 
 make all
 make run
+make run
+make run
+make run
+make run
 make clean

@@ -1,5 +1,3 @@
-package HW4;
-
 public class Consumer implements Runnable {
     private final int TOTAL_EXECUTIONS = 1000000;
     private CircularBuffer buffer;
