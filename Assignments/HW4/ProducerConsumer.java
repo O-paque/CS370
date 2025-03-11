@@ -6,9 +6,8 @@ public class ProducerConsumer {
         CircularBuffer circleBuffer = new CircularBuffer();
         Thread producer = new Thread(new Producer(circleBuffer));
         Thread consumer = new Thread(new Consumer(circleBuffer));
-
+        
         producer.start();
         consumer.start();
-
     }
 }

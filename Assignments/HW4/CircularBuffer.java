@@ -5,6 +5,7 @@ public class CircularBuffer {
     private int head;
     private int tail;
     private int entries;
+    private int c = 0, p = 0;
 
     CircularBuffer(){
         buffer = new double[1000];
@@ -19,16 +20,19 @@ public class CircularBuffer {
     public synchronized void add(double d) {
         while (entries == buffer.length) {
             try{
+                System.out.println("Producer thread sleeping for time " + ++p);
+                Thread.sleep(10);
                 wait();
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //System.out.println("Producer thread awake");
         }
+        
 
-        int index = (tail + 1) % buffer.length;
-        buffer[index] = d;
-        tail++;
+        tail = (tail + 1) % buffer.length;
+        buffer[tail] = d;
         entries++;
 
         notify();
@@ -40,18 +44,21 @@ public class CircularBuffer {
     public synchronized double get() {
         while(entries == 0){
             try{
+                System.out.println("Consumer thread sleeping for time " + ++c);
+                Thread.sleep(10);
                 wait();
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            //System.out.println("Consumer thread awake");
         }
-        int index = head % buffer.length;
 
-        head++;
+        double value = buffer[head];
+        head = (head + 1) % buffer.length;
         entries--;
 
         notify();
-        return buffer[index];
+        return value;
     }
 }
