@@ -3,11 +3,13 @@
 
 class FCFS{
     private:
-        // queue structure
+        int avgTurnTime, avgWaitTime, throughput;
 
     public:
         FCFS();
-        // getters setters etc
+        int getTurn();
+        int getWait();
+        int getThroughput();
 };
 
 #endif
