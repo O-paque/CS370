@@ -1,30 +1,25 @@
-#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <vector>
-#include <tuple>
 #include "Process.h"
 #include "FCFS.h"
-
-// CS370-HW5-Input.csv
-// sample.csv
+#include "SJF.h"
 
 using namespace std;
 
 void parse(vector<Process> &processes, ifstream &file);
 void printValues(vector<Process> &processes);
-void printResults(FCFS &fcfs);
 
 int main(int argc, char *argv[]) {
     vector<Process> processes;
     ifstream file(argv[argc - 1]);
 
     FCFS fcfs;
+    SJF sjf;
 
     parse(processes, file);
-    printValues(processes);
 
-    printResults(fcfs);
+    fcfs.run(processes);
+    sjf.run(processes);
 
     return 0;
 }
@@ -63,16 +58,4 @@ void printValues(vector<Process> &processes) {
         cout << p.pid << ' ' << p.arrival << ' ' << 
             p.burst << ' ' << p.priority << endl;
     }
-}
-
-/*
-@brief  Formatted output required by assignment parameters 
-        to show algorithm performance
-
-@param  fcfs: The FCFS algorithm
-*/
-void printResults(FCFS &fcfs) {
-    cout << "--- FCFS ---\nAverage Turnaround Time: " << fcfs.getTurn() <<
-        "\nAverage Waiting Time: " << fcfs.getWait() << 
-        "\nThroughput: " << fcfs.getThroughput() << endl;
 }

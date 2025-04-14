@@ -2,20 +2,57 @@
 
 using namespace std;
 
+/*
+@brief  Sort the Process vector primarily by arrival time, then by priority
+
+@param  processes: The data structure holding the process value
+*/
+void FCFS::sortVector(vector<Process> &processes) {
+    sort(processes.begin(), processes.end(), [](const Process &a, const Process &b) {
+        if (a.arrival == b.arrival) {
+            return a.priority < b.priority;
+        }
+        return a.arrival < b.arrival;
+    });
+}
+
 FCFS::FCFS() {
+    time = 0;
     avgTurnTime = 0;
     avgWaitTime = 0;
     throughput = 0;
 }
 
-int FCFS::getTurn() {
-    return avgTurnTime;
+/*
+@brief  Emulate the FCFS scheduling algorithm, which runs a process based off of arival time for
+its enitre burst duration. 
+
+@param  processes: The data structure holding the process values.
+*/
+void FCFS::run(vector<Process> processes) {
+    sortVector(processes);
+
+    for (auto &p : processes) {
+        p.startTime = max(time, p.arrival);
+        p.finishTime = p.startTime + p.burst;
+        avgWaitTime += p.startTime - p.arrival;
+        avgTurnTime += p.finishTime - p.arrival;
+        time = p.finishTime;
+    }
+
+    avgWaitTime = avgWaitTime / processes.size();
+    avgTurnTime = avgTurnTime / processes.size();
+    throughput = processes.size() / (double) time;
+
+    printResults();
 }
 
-int FCFS::getWait() {
-    return avgWaitTime;
-}
-
-int FCFS::getThroughput() {
-    return throughput;
+/*
+@brief  Formatted print statement for the autograder.
+*/
+void FCFS::printResults(){
+    cout << "--- FCFS ---" << fixed << setprecision(3) << endl;
+    cout << "Average Turnaround Time: " << avgTurnTime << endl;
+    cout << "Average Waiting Time: " << avgWaitTime << endl;
+    cout << "Throughput: " << throughput << endl;
 }
