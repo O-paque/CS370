@@ -39,7 +39,7 @@ void parse(vector<Process> &processes, ifstream &file) {
             istringstream ss(line);
             if (ss >> pid >> comma >> arrival >> comma >> burst >> 
                 comma >> priority) {
-                    processes.push_back({pid, arrival, burst, priority});
+                    processes.push_back({pid, arrival, burst, priority, -1, burst, 0});
                 }
                 else {
                     cerr << "Error parsing line: " << line << endl;

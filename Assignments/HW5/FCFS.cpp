@@ -32,6 +32,7 @@ its enitre burst duration.
 void FCFS::run(vector<Process> processes) {
     sortVector(processes);
 
+    // Run each process from the sorted vector in FCFS fashion
     for (auto &p : processes) {
         p.startTime = max(time, p.arrival);
         p.finishTime = p.startTime + p.burst;
@@ -40,6 +41,7 @@ void FCFS::run(vector<Process> processes) {
         time = p.finishTime;
     }
 
+    // Compute the performance metrics
     avgWaitTime = avgWaitTime / processes.size();
     avgTurnTime = avgTurnTime / processes.size();
     throughput = processes.size() / (double) time;
