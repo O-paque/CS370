@@ -25,6 +25,7 @@ void PS::run(std::vector<Process> &processes) {
         leastPriority = 100; // Lowest priority in input set is <= 50
         leastArrival = 10000;
         leastPID = 10000;
+        leastIndex = -1;
 
         // Find the index of the highest priority process to run
         for (int i = 0; i < processes.size(); i++) {
