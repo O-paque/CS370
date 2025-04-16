@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include "Process.h"
 #include "FCFS.h"
 #include "SJF.h"
@@ -19,9 +20,13 @@ int main(int argc, char *argv[]) {
 
     parse(processes, file);
 
-    fcfs.run(processes);
-    sjf.run(processes);
-    ps.run(processes);
+    vector<Process> inputFCFS = processes;
+    vector<Process> inputSJF = processes;
+    vector<Process> inputPS = processes;
+
+    fcfs.run(inputFCFS);
+    sjf.run(inputSJF);
+    ps.run(inputPS);
 
     return 0;
 }
