@@ -15,7 +15,7 @@ available at the top of each clock cycle and run it to completion.
 
 @param  processes: The data structure holding the process values.
 */
-void SJF::run(std::vector<Process> &processes) {
+void SJF::run(std::vector<Process> processes) {
     int complete = 0;   
     int leastTime, leastIndex;
     
@@ -32,11 +32,6 @@ void SJF::run(std::vector<Process> &processes) {
                     leastTime = processes[i].remainingTime;
                     leastIndex = i;
             }
-        }
-
-        if (leastIndex == -1) {
-            time++;
-            continue;
         }
 
         // Reference to the shortest process

@@ -15,7 +15,7 @@ class PS {
 
     public:
         PS();
-        void run(std::vector<Process> &processes);
+        void run(std::vector<Process> processes);
 };
 
 #endif
