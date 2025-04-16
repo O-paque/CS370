@@ -1,8 +1,8 @@
 #!/bin/bash
 
 make all
-./Scheduler CS370-HW5-Input.csv
+./Scheduler sample2.csv
 make clean
 
 # CS370-HW5-Input.csv
-# sample.csv
+# sample2.csv

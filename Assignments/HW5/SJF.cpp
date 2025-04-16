@@ -33,6 +33,11 @@ void SJF::run(std::vector<Process> processes) {
             }
         }
 
+        if (leastIndex == -1) {
+            time++;
+            continue;
+        }
+
         // Reference to the shortest process
         Process& exe = processes[leastIndex];
 
@@ -51,9 +56,6 @@ void SJF::run(std::vector<Process> processes) {
             complete++;
         }
     }
-
-    avgWaitTime++;
-    avgTurnTime++;
 
     // Compute the performance metrics
     avgWaitTime = avgWaitTime / processes.size();
