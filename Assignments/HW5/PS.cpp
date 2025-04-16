@@ -16,7 +16,7 @@ to compleiton
 
 @param  processes: The data structure holding the process values.
 */
-void PS::run(std::vector<Process> processes) {
+void PS::run(std::vector<Process> &processes) {
     int complete = 0;   
     int leastPriority, leastIndex, leastArrival, leastPID;
     
