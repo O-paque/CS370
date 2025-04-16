@@ -15,7 +15,7 @@ class SJF {
 
     public:
         SJF();
-        void run(std::vector<Process> processes);
+        void run(std::vector<Process> &processes);
 };
 
 #endif

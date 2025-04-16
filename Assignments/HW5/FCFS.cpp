@@ -26,7 +26,7 @@ its enitre burst duration.
 
 @param  processes: The data structure holding the process values.
 */
-void FCFS::run(vector<Process> processes) {
+void FCFS::run(vector<Process> &processes) {
     sortVector(processes);
 
     // Run each process from the sorted vector in FCFS fashion

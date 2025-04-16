@@ -16,7 +16,7 @@ class FCFS{
 
     public:
         FCFS();
-        void run(std::vector<Process> processes);
+        void run(std::vector<Process> &processes);
 };
 
 #endif

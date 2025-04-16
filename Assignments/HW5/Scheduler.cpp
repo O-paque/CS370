@@ -18,11 +18,17 @@ int main(int argc, char *argv[]) {
     SJF sjf;
     PS ps;
 
+
+
     parse(processes, file);
 
-    fcfs.run(processes);
-    sjf.run(processes);
-    ps.run(processes);
+    vector<Process> inputFCFS = processes;
+    vector<Process> inputSJF = processes;
+    vector<Process> inputPS = processes;
+
+    fcfs.run(inputFCFS);
+    sjf.run(inputSJF);
+    ps.run(inputPS);
 
     return 0;
 }
