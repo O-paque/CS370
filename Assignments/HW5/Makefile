@@ -1,5 +1,5 @@
 CC=g++
-FILES=Scheduler.cpp FCFS.cpp SJF.cpp PS.cpp
+FILES=Scheduler.cpp FCFS.cpp SJF.cpp PS.cpp FCFS.h SJF.h PS.h Process.h
 OUT_EXE=Scheduler
 ARGS=
 all: $(FILES)

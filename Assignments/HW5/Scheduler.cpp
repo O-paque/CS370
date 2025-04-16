@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include "Process.h"
 #include "FCFS.h"
 #include "SJF.h"
@@ -8,7 +9,6 @@
 using namespace std;
 
 void parse(vector<Process> &processes, ifstream &file);
-void printValues(vector<Process> &processes);
 
 int main(int argc, char *argv[]) {
     vector<Process> processes;
@@ -48,17 +48,5 @@ void parse(vector<Process> &processes, ifstream &file) {
                     cerr << "Error parsing line: " << line << endl;
                 }
         }
-    }
-}
-
-/*
-@brief  Print the original values that were read into the Process vector
-
-@param  processes: The data structure holding the process values
-*/
-void printValues(vector<Process> &processes) {
-    for (const auto& p: processes) {
-        cout << p.pid << ' ' << p.arrival << ' ' << 
-            p.burst << ' ' << p.priority << endl;
     }
 }
