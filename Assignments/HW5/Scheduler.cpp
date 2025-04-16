@@ -3,6 +3,7 @@
 #include "Process.h"
 #include "FCFS.h"
 #include "SJF.h"
+#include "PS.h"
 
 using namespace std;
 
@@ -15,11 +16,13 @@ int main(int argc, char *argv[]) {
 
     FCFS fcfs;
     SJF sjf;
+    PS ps;
 
     parse(processes, file);
 
     fcfs.run(processes);
     sjf.run(processes);
+    ps.run(processes);
 
     return 0;
 }

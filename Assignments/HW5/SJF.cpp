@@ -2,20 +2,6 @@
 
 using namespace std;
 
-/*
-@brief  Sort the Process vector primarily by arrival time, then by priority
-
-@param  processes: The data structure holding the process value
-*/
-void SJF::sortVector(vector<Process> &processes) {
-    sort(processes.begin(), processes.end(), [](const Process &a, const Process &b) {
-        if (a.arrival == b.arrival) {
-            return a.priority < b.priority;
-        }
-        return a.arrival < b.arrival;
-    });
-}
-
 SJF::SJF(){
     time = 0;
     avgTurnTime = 0;
@@ -30,7 +16,6 @@ available at the top of each clock cycle and run it to completion.
 @param  processes: The data structure holding the process values.
 */
 void SJF::run(std::vector<Process> processes) {
-    sortVector(processes);
     int complete = 0;   
     int leastTime, leastIndex;
     
@@ -49,20 +34,20 @@ void SJF::run(std::vector<Process> processes) {
         }
 
         // Reference to the shortest process
-        Process& currentExecution = processes[leastIndex];
+        Process& exe = processes[leastIndex];
 
-        if (currentExecution.startTime == -1){
-            currentExecution.startTime = time;
+        if (exe.startTime == -1){
+            exe.startTime = time;
         }
 
         // Single quantum simulation
         time++;
-        currentExecution.remainingTime--;
+        exe.remainingTime--;
 
-        if (currentExecution.remainingTime == 0) {
-            currentExecution.finishTime = time;
-            avgWaitTime += currentExecution.startTime - currentExecution.arrival;
-            avgTurnTime += currentExecution.finishTime - currentExecution.arrival;
+        if (exe.remainingTime == 0) {
+            exe.finishTime = time;
+            avgWaitTime += exe.finishTime - exe.arrival - exe.burst;
+            avgTurnTime += exe.finishTime - exe.arrival;
             complete++;
         }
     }

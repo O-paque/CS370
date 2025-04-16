@@ -1,7 +1,7 @@
 #!/bin/bash
 
 make all
-./Scheduler sample.csv
+./Scheduler CS370-HW5-Input.csv
 make clean
 
 # CS370-HW5-Input.csv

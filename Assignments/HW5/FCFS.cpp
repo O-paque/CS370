@@ -36,7 +36,7 @@ void FCFS::run(vector<Process> processes) {
     for (auto &p : processes) {
         p.startTime = max(time, p.arrival);
         p.finishTime = p.startTime + p.burst;
-        avgWaitTime += p.startTime - p.arrival;
+        avgWaitTime += p.finishTime - p.arrival - p.burst;
         avgTurnTime += p.finishTime - p.arrival;
         time = p.finishTime;
     }

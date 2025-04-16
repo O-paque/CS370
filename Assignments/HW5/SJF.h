@@ -7,11 +7,10 @@
 #include <vector>
 #include "Process.h"
 
-class SJF{
+class SJF {
     private:
         int time;
         double avgTurnTime, avgWaitTime, throughput;
-        void sortVector(std::vector<Process> &processes);
         void printResults();
 
     public:

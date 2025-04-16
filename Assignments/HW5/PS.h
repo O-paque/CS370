@@ -1,13 +1,21 @@
 #ifndef PS_H
 #define PS_H
 
-class PS{
+#include <algorithm>
+#include <iomanip>
+#include <iostream>
+#include <vector>
+#include "Process.h"
+
+class PS {
     private:
-        // queue structure
+        int time;
+        double avgTurnTime, avgWaitTime, throughput;
+        void printResults();
 
     public:
         PS();
-        // getters setters etc
+        void run(std::vector<Process> processes);
 };
 
 #endif
