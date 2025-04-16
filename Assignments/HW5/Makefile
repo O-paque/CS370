@@ -10,4 +10,4 @@ clean:
 	rm -f *.o $(OUT_EXE)
 	
 package:
-	zip Seefeldt-Tyler-HW5.zip README.txt Makefile Scheduler.cc FCFS.cpp SJF.cpp PS.cpp
+	zip Seefeldt-Tyler-HW5.zip README.txt Makefile Scheduler.cc FCFS.cpp FCFS.h SJF.cpp SJF.h PS.cpp PS.h Process.h
