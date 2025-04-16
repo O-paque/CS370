@@ -8,10 +8,7 @@ using namespace std;
 @param  processes: The data structure holding the process value
 */
 void FCFS::sortVector(vector<Process> &processes) {
-    sort(processes.begin(), processes.end(), [](const Process &a, const Process &b) {
-        if (a.arrival == b.arrival) {
-            return a.priority < b.priority;
-        }
+    stable_sort(processes.begin(), processes.end(), [](const Process &a, const Process &b) {
         return a.arrival < b.arrival;
     });
 }

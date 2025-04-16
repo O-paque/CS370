@@ -52,6 +52,9 @@ void SJF::run(std::vector<Process> processes) {
         }
     }
 
+    avgWaitTime++;
+    avgTurnTime++;
+
     // Compute the performance metrics
     avgWaitTime = avgWaitTime / processes.size();
     avgTurnTime = avgTurnTime / processes.size();

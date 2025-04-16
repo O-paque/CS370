@@ -18,19 +18,26 @@ to compleiton
 */
 void PS::run(std::vector<Process> processes) {
     int complete = 0;   
-    int leastPriority, leastIndex;
+    int leastPriority, leastIndex, leastArrival, leastPID;
     
     // Loop until all processes in the vector reach a remainingTime of 0
     while (complete < processes.size()) {
         leastPriority = 100; // Lowest priority in input set is <= 50
+        leastArrival = 10000;
+        leastPID = 10000;
 
         // Find the index of the highest priority process to run
         for (int i = 0; i < processes.size(); i++) {
-            if (processes[i].arrival <= time &&
-                processes[i].remainingTime > 0 &&
-                processes[i].priority < leastPriority) {
-                    leastPriority = processes[i].priority;
-                    leastIndex = i;
+            if (processes[i].arrival <= time && processes[i].remainingTime > 0) {
+                if (processes[i].priority < leastPriority ||
+                    processes[i].priority == leastPriority && processes[i].arrival < leastArrival ||
+                    processes[i].priority == leastPriority && processes[i].arrival == leastArrival &&
+                    processes[i].pid < leastPID) {
+                        leastPriority = processes[i].priority;
+                        leastIndex = i;
+                        leastArrival = processes[i].arrival;
+                        leastPID = processes[i].pid;
+                    }
             }
         }
 
@@ -53,9 +60,12 @@ void PS::run(std::vector<Process> processes) {
         }
     }
 
+    avgWaitTime++;
+    avgTurnTime++;
+
     // Compute the performance metrics
-    avgWaitTime = avgWaitTime / processes.size();
-    avgTurnTime = avgTurnTime / processes.size();
+    avgWaitTime = avgWaitTime / static_cast<double>(processes.size());
+    avgTurnTime = avgTurnTime / static_cast<double>(processes.size());
     throughput = processes.size() / (double) time;
 
     printResults();
