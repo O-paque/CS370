@@ -15,17 +15,17 @@ int main(int argc, char *argv[]) {
     ifstream file(argv[argc - 1]);
 
     //FCFS fcfs;
-    //SJF sjf;
+    SJF sjf;
     PS ps;
 
     parse(processes, file);
 
     //vector<Process> inputFCFS = processes;
-    //vector<Process> inputSJF = processes;
+    vector<Process> inputSJF = processes;
     vector<Process> inputPS = processes;
 
     //fcfs.run(inputFCFS);
-    //sjf.run(inputSJF);
+    sjf.run(inputSJF);
     ps.run(inputPS);
 
     return 0;
