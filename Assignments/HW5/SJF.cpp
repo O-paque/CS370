@@ -34,6 +34,11 @@ void SJF::run(std::vector<Process> &processes) {
             }
         }
 
+        if (leastIndex == -1){
+            time++;
+            continue;
+        }
+
         // Reference to the shortest process
         Process& exe = processes[leastIndex];
 
