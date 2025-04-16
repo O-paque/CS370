@@ -22,6 +22,7 @@ void SJF::run(std::vector<Process> &processes) {
     // Loop until all processes in the vector reach a remainingTime of 0
     while (complete < processes.size()) {
         leastTime = 10000;   // Initialize to a large burst to always find a smaller one from input
+        leastIndex = -1;
 
         // Find the index of the shortest remaining process to run that has "arrived"
         for (int i = 0; i < processes.size(); i++) {
